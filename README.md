@@ -25,7 +25,7 @@ Med Postman eller Thunder Client man kan testa API och CRUD-funktionalitet med n
        
 | Domain | Method    | URI                   | BESKRIVNING  |
 | ------------|-----------|--------|--------| 
-|        | GET       | http://localhost:5000/films             | Hämta ut all filmer från tabellen.                |
+|        | GET       | http://localhost:5000/films             | Hämta ut all filmer från DB.                |
 |        | GET       | http://localhost:5000/films/id          | Hämta ut en film från database med ett givet id. |
 |        | POST      | http://localhost:5000/films             | Lägga till data till database                   |
 |        | PUT       | http://localhost:5000/films/ID          | Uppdatera data för en film ett givet id.     |      
