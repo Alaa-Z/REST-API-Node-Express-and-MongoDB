@@ -33,11 +33,22 @@ var upload = multer({ storage: storage, fileFilter : fileFilter});
 /********************************************* 
  * Initialize database and connection
  *********************************************/
-mongoose.connect('mongodb://127.0.0.1:27017/filmDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.Promise = global.Promise; // Global use of mongoose
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+// mongoose.connect('mongodb://127.0.0.1:27017/filmDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.Promise = global.Promise; // Global use of mongoose
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+
+//Connections to MongoDB, Atlas with Mongoose
+const url = 'mongodb+srv://alaa:passwordAlaa@mern.a6mnzuw.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(url, { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+mongoose.Promise = global.Promise;
+
+//Hantering vid anslutning
+const db = mongoose.connection;
 db.once('open', function (callback) { // Add the listener for db events 
   console.log("Connected to db");
 
