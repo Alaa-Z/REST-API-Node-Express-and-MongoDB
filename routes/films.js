@@ -34,6 +34,7 @@ var upload = multer({ storage: storage, fileFilter : fileFilter});
  * Initialize database and connection
  *********************************************/
 
+// work with Copmass
 // mongoose.connect('mongodb://127.0.0.1:27017/filmDB', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.Promise = global.Promise; // Global use of mongoose
 // var db = mongoose.connection;
@@ -47,7 +48,7 @@ mongoose.connect(url, {
 });
 mongoose.Promise = global.Promise;
 
-//Hantering vid anslutning
+// Hantering vid anslutning
 const db = mongoose.connection;
 db.once('open', function (callback) { // Add the listener for db events 
   console.log("Connected to db");
@@ -78,7 +79,7 @@ db.once('open', function (callback) { // Add the listener for db events
           filmImage:result.filmImage,
           request : {
             type: "POST",
-            url: "http://localhost:5000/films/"+result._id
+            // url: "http://localhost:5000/films/"+result._id
           }
         }
      });
@@ -110,7 +111,7 @@ db.once('open', function (callback) { // Add the listener for db events
             _id: doc._id, 
             request : {
               type: "GET",
-              url: "http://localhost:5000/films/"+doc._id
+              // url: "http://localhost:5000/films/"+doc._id
             }
           }
         })
@@ -138,7 +139,7 @@ db.once('open', function (callback) { // Add the listener for db events
           film: doc,
           request : {
             type: "GET",
-            url: "http://localhost:5000/films/"+doc._id
+            // url: "http://localhost:5000/films/"+doc._id
           }
           
         });
@@ -206,7 +207,7 @@ db.once('open', function (callback) { // Add the listener for db events
                     filmImage:result.filmImage,
                     request : {
                       type: "POST",
-                      url: "http://localhost:5000/films/"+result._id
+                      // url: "http://localhost:5000/films/"+result._id
                     }
                   }
               });
