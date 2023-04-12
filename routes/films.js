@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // for image upload
 const multer = require('multer');
@@ -34,18 +35,20 @@ var upload = multer({ storage: storage, fileFilter : fileFilter});
  * Initialize database and connection
  *********************************************/
 
-// work with Copmass
+// work with Compass
 // mongoose.connect('mongodb://127.0.0.1:27017/filmDB', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.Promise = global.Promise; // Global use of mongoose
 // var db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error:'));
+const mongoose = require('mongoose');
 
 //Connections to MongoDB, Atlas with Mongoose
-const url = 'mongodb+srv://alaa:passwordAlaa@mern.a6mnzuw.mongodb.net/?retryWrites=true&w=majority';
+const url = process.env.MONGODB_URL;
 mongoose.connect(url, { 
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 mongoose.Promise = global.Promise;
 
 // Hantering vid anslutning
@@ -54,6 +57,7 @@ db.once('open', function (callback) { // Add the listener for db events
   console.log("Connected to db");
 
   /** -------------------------Add new film ------------------------- **/
+  
   router.post('/',upload.single('filmImage'),(req, res, next) => {
     // console.log(req.file)
     const film = new Film({
